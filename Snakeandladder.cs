@@ -10,13 +10,10 @@ namespace Snake_And_Ladder
     {
         static void Main(string[] args)
         {
-                //game with single player at start
-                int player = 1;
-                int StartingPosition = 0;
-                //computation
-                Console.WriteLine("No. of Player " + player);
-                Console.WriteLine("Position at start:- " + StartingPosition);
-                Console.ReadLine();
-            }
+            // UC2 Player rolls a die
+            Random random = new Random();
+            int dieRoll = random.Next(0, 7);
+            Console.WriteLine("You got " + dieRoll + " in die roll.");
+        }
     }
 }
