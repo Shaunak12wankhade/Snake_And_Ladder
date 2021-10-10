@@ -10,28 +10,62 @@ namespace Snake_And_Ladder
     {
         static void Main(string[] args)
         {
-          
+            Snakeandladder.tillposition100();
+            Console.ReadLine();
+        }
+       
+
+            //Constants
+        public const int maxposition = 100;
+        public const int sameposition = 0;
+        public const int forward = 1;
+        public const int backward = 2;
+        public static void tillposition100()
+        {
+            Console.WriteLine("");
+
+            //variables
+            int currentposition = 1;
+
+            while (currentposition <= maxposition)
             {
                 Random random = new Random();
-                int diceRoll = random.Next(1, 6);
-                Console.WriteLine("You got " + diceRoll);
-                //Constants
-                const int samePosition = 0;
-                const int forward = 1;
+                int dice = random.Next(1, 6);
+                Console.WriteLine("You got" + dice);
+
                 Random random1 = new Random();
-                int options = random1.Next(0, 2);
-                if (options == samePosition)
+                int options = random1.Next(0, 3);
+
+                if (options == sameposition)
                 {
-                    Console.WriteLine("You Got No Option Stay in the Same Place.");
+                    Console.WriteLine("You got no option so stay");
                 }
                 else if (options == forward)
                 {
-                    Console.WriteLine("You Got Ladder Your moving ahead by " + diceRoll + " numbers.");
+                    currentposition = currentposition + dice;
+                    Console.WriteLine("You got ladder so move forward" + dice);
                 }
-                else
-                    Console.WriteLine("You Got Snake Your Moving Backward by " + diceRoll + " numbers.");
+                else if (options == backward)
+                    currentposition = currentposition - dice;
+                Console.WriteLine("You got snake so move backward" + dice);
+
+                if (currentposition >= 100)
+                {
+                    Console.WriteLine("You have won");
+                    break;
+                    
+                }
+                else if (currentposition <= 0)
+                {
+                    Console.WriteLine("You Lost so restart further");
+                    currentposition = currentposition - currentposition;
+                }
+                Console.WriteLine("Your current position is : " + currentposition);
+                Console.WriteLine("");
             }
 
+
         }
+        
     }
 }
