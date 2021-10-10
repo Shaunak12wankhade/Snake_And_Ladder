@@ -10,7 +10,7 @@ namespace Snake_And_Ladder
     {
         static void Main(string[] args)
         {
-            Snakeandladder.tillposition100();
+            Snakeandladder.exactposition100();
             Console.ReadLine();
         }
        
@@ -20,12 +20,13 @@ namespace Snake_And_Ladder
         public const int sameposition = 0;
         public const int forward = 1;
         public const int backward = 2;
-        public static void tillposition100()
+        public static void exactposition100()
         {
             Console.WriteLine("");
 
             //variables
             int currentposition = 1;
+            int newposition = 1;
 
             while (currentposition <= maxposition)
             {
@@ -35,6 +36,23 @@ namespace Snake_And_Ladder
 
                 Random random1 = new Random();
                 int options = random1.Next(0, 3);
+
+                newposition = currentposition + dice;
+
+                if (newposition == 100)
+                {
+                    currentposition = currentposition - dice;
+                    Console.WriteLine("You won");
+                    break;
+                }
+                else if (newposition > 100)
+                {
+                    Console.WriteLine("You got No option so stay");
+                    Console.WriteLine("Your current position is: " + currentposition);
+                    Console.WriteLine("");
+                    continue;
+
+                }
 
                 if (options == sameposition)
                 {
@@ -46,15 +64,17 @@ namespace Snake_And_Ladder
                     Console.WriteLine("You got ladder so move forward" + dice);
                 }
                 else if (options == backward)
+                {
                     currentposition = currentposition - dice;
-                Console.WriteLine("You got snake so move backward" + dice);
-
+                    Console.WriteLine("You got snake so move backward" + dice);
+                }
                 if (currentposition >= 100)
                 {
-                    Console.WriteLine("You have won");
+                    Console.WriteLine("You won");
                     break;
-                    
                 }
+
+                
                 else if (currentposition <= 0)
                 {
                     Console.WriteLine("You Lost so restart further");
