@@ -10,7 +10,7 @@ namespace Snake_And_Ladder
     {
         static void Main(string[] args)
         {
-            Snakeandladder.exactposition100();
+            Snakeandladder.nooftimedicerolled();
             Console.ReadLine();
         }
        
@@ -20,13 +20,15 @@ namespace Snake_And_Ladder
         public const int sameposition = 0;
         public const int forward = 1;
         public const int backward = 2;
-        public static void exactposition100()
+        public static void nooftimedicerolled()
         {
             Console.WriteLine("");
 
             //variables
             int currentposition = 1;
-            int newposition = 1;
+            int newposition = 0;
+            int noofdiceroll = 0;
+
 
             while (currentposition <= maxposition)
             {
@@ -38,11 +40,12 @@ namespace Snake_And_Ladder
                 int options = random1.Next(0, 3);
 
                 newposition = currentposition + dice;
+                noofdiceroll++;
 
                 if (newposition == 100)
                 {
-                    currentposition = currentposition - dice;
                     Console.WriteLine("You won");
+                    Console.WriteLine("Dice rolled" + noofdiceroll);
                     break;
                 }
                 else if (newposition > 100)
